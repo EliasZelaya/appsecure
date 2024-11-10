@@ -1,4 +1,4 @@
-import { User } from "../models/user.model";
+import { User } from "../models/user.model.js";
 
 export const saveUser = async (user) => {
   try {
@@ -47,7 +47,7 @@ export const deleteUserById = async (id) => {
 export const updateUserById = async (id, data) => {
   try {
     const updatedUser =  await User.findByIdAndUpdate(
-      { id: id },
+      id,
       data,
       {
         new: true,

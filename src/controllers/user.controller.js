@@ -1,4 +1,4 @@
-import { deleteUserById, getUsers, saveUser, updateUserById } from "../services/user.service";
+import { deleteUserById, getUsers, saveUser, updateUserById } from "../services/user.service.js";
 
 export const createUserController = async (req, res, next) => {
   try {
@@ -15,7 +15,7 @@ export const createUserController = async (req, res, next) => {
 
 export const getUsersController = async (req, res, next) => {
   try {
-    const users = getUsers();
+    const users = await getUsers();
 
     res.status(200).json({ data: users});
   } catch (error) {
@@ -26,9 +26,10 @@ export const getUsersController = async (req, res, next) => {
 
 export const updateUserController = async (req, res, next) => {
   try {
-    const { id, ...data } = req.body;
+    const id =  req.body.id;
+    const data = req.body;
 
-    const updatedUser = await updateUserById(id);
+    const updatedUser = await updateUserById(id, data);
 
     res.status(200).json({ message: 'Se actualizaron los datos del usuario', data: updatedUser });
   } catch (error) {
