@@ -35,7 +35,7 @@ export const deleteUserById = async (id) => {
   try {
     const userDeleted = await User.findByIdAndDelete(id);
 
-    if(!userDeleted) throw new Error(`No se encontro al usuario con id: ${error}`);
+    if(!userDeleted) throw new Error(`No se encontro al usuario`);
 
     return userDeleted;
   } catch (error) {
